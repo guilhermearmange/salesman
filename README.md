@@ -1,12 +1,38 @@
-# Getting Started
+# Salesman
 
-### Reference Documentation
-For further reference, please consider the following sections:
+Este projeto foi criado para processar um arquivo de entrada, onde os dados são separados por um caractere delimitador, possuindo três tipos de dados, os vendedores, os clientes e as vendas. A partir destes dados de entrada tem-se como objetivo gerar um relatório com os seguintes dados: 
 
-* [Official Gradle documentation](https://docs.gradle.org)
+- Quantidade de clientes
+- Quantidade de vendedores
+- Pior vendedor 
+- Venda mais cara
 
-### Additional Links
-These additional references should also help you:
+Destaque do que foi utilizado para o desenvolvimento deste projeto:
+- Java 8
+- Spring Boot
+- Gradle
+- JUnit
 
-* [Gradle Build Scans – insights for your project's build](https://scans.gradle.com#gradle)
+# Como utilizar
 
+- git clone https://github.com/guilhermearmange/salesman.git
+- cd Salesman
+- ./gradlew build bootRun
+
+# Configurações possiveis
+- separator: ç
+    - Utilizado para definir o separador do arquivo
+- file.output.regex: (.*)(\.dat)
+    - Utilizado para definir a regex de replace para gerar o nome do arquivo de output
+
+- file.output.replace: $1.done$2
+    - Utilizado para definir o replacement para gerar o nome do arquivo de output
+
+- file.output.folder: /data/out
+    - Utilizado para definir a pasta que será gravado os arquivos de saida. Caminho relativo da user home do usuário.
+
+- file.input.folder: /data/in
+    - Utilizado para definir a pasta da qual será lido os arquivos. Caminho relativo da user home do usuário. 
+
+- file.input.matcher: "glob:*.dat"
+    - Pattern para validar os tipos de arquivos a serem processados |
