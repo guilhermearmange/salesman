@@ -16,7 +16,7 @@ Destaque do que foi utilizado para o desenvolvimento deste projeto:
 # Como utilizar
 
 - git clone https://github.com/guilhermearmange/salesman.git
-- cd Salesman
+- cd salesman
 - ./gradlew build bootRun
 
 # Configurações possiveis
