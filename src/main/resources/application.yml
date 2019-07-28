@@ -6,4 +6,5 @@ file:
     folder: /data/out
   input:
     folder: /data/in
-    matcher: "glob:*.dat"
+    matcher: glob:*.dat
+    max-wait-time: -1

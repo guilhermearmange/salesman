@@ -22,6 +22,7 @@ Destaque do que foi utilizado para o desenvolvimento deste projeto:
 # Configurações possiveis
 - separator: ç
     - Utilizado para definir o separador do arquivo
+    
 - file.output.regex: (.*)(\.dat)
     - Utilizado para definir a regex de replace para gerar o nome do arquivo de output
 
@@ -35,4 +36,8 @@ Destaque do que foi utilizado para o desenvolvimento deste projeto:
     - Utilizado para definir a pasta da qual será lido os arquivos. Caminho relativo da user home do usuário. 
 
 - file.input.matcher: "glob:*.dat"
-    - Pattern para validar os tipos de arquivos a serem processados |
+    - Pattern para validar os tipos de arquivos a serem processados 
+    
+- file.input.max-wait-time: -1
+    - Tempo maximo de espera para escrita do proximo arquivo. 
+        - Negativo para sem timeout ou um número positivo para configurar o timeout máximo em milissegundos

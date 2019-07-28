@@ -11,6 +11,7 @@ import java.nio.file.StandardWatchEventKinds;
 import java.nio.file.WatchEvent;
 import java.nio.file.WatchKey;
 import java.nio.file.WatchService;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -43,12 +44,25 @@ public class FileWatchServiceRunner implements CommandLineRunner {
 		
 		Files.walk(inputFolder).forEach(filePath -> processPath(matcher, inputFolder, filePath));
 		while (true) {
-			final WatchKey watchKey = watchService.take();
-			for (WatchEvent<?> event : watchKey.pollEvents()) {
-				final Path filePath = (Path) event.context();
-				processPath(matcher, inputFolder, inputFolder.resolve(filePath));
+			final WatchKey watchKey = getWatchKey(watchService);
+			if( watchKey != null) {
+				for (WatchEvent<?> event : watchKey.pollEvents()) {
+					final Path filePath = (Path) event.context();
+					processPath(matcher, inputFolder, inputFolder.resolve(filePath));
+				}
+				watchKey.reset();
+			} else {
+				break;
 			}
-			watchKey.reset();
+		}
+	}
+
+	private WatchKey getWatchKey(final WatchService watchService) throws InterruptedException {
+		Long fileInputMaxWaitTime = properties.getFileInputMaxWaitTime();
+		if(fileInputMaxWaitTime < 0) {
+			return watchService.take();
+		} else {
+			return watchService.poll(fileInputMaxWaitTime, TimeUnit.MILLISECONDS);
 		}
 	}
 
