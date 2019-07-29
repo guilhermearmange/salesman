@@ -39,5 +39,4 @@ Destaque do que foi utilizado para o desenvolvimento deste projeto:
     - Pattern para validar os tipos de arquivos a serem processados 
     
 - file.input.max-wait-time: -1
-    - Tempo maximo de espera para escrita do proximo arquivo. 
-        - Negativo para sem timeout ou um número positivo para configurar o timeout máximo em milissegundos
+    - Tempo maximo de espera para escrita do proximo arquivo. Negativo para sem timeout ou um número positivo para configurar o timeout máximo em milissegundos
