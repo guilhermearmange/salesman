@@ -9,7 +9,7 @@ Este projeto foi criado para processar um arquivo de entrada, onde os dados são
 
 Destaque do que foi utilizado para o desenvolvimento deste projeto:
 - Java 8
-- Spring Boot
+- Spring Integration
 - Gradle
 - JUnit
 
@@ -37,6 +37,6 @@ Destaque do que foi utilizado para o desenvolvimento deste projeto:
 
 - file.input.matcher: "glob:*.dat"
     - Pattern para validar os tipos de arquivos a serem processados 
-    
-- file.input.max-wait-time: -1
-    - Tempo maximo de espera para escrita do proximo arquivo. Negativo para sem timeout ou um número positivo para configurar o timeout máximo em milissegundos
+
+- poller.rate: 1000
+    - Intervalo de verificação para novos arquivos

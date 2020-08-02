@@ -17,8 +17,8 @@ public class Properties {
 	private String fileInputFolder;
 	@Value("${file.input.matcher}")
 	private String fileInputMatcher;
-	@Value("${file.input.max-wait-time}")
-	private Long fileInputMaxWaitTime;
+	@Value("${poller.rate}")
+	private Long pollerRate;
 	
 	public String getBasePath() {
 		return System.getProperty("user.home");
@@ -72,12 +72,11 @@ public class Properties {
 		this.fileInputMatcher = fileInputMatcher;
 	}
 
-	public Long getFileInputMaxWaitTime() {
-		return fileInputMaxWaitTime;
+	public Long getPollerRate() {
+		return pollerRate;
 	}
 
-	public void setFileInputMaxWaitTime(Long fileInputMaxWaitTime) {
-		this.fileInputMaxWaitTime = fileInputMaxWaitTime;
+	public void setPollerRate(Long pollerRate) {
+		this.pollerRate = pollerRate;
 	}
-
 }
