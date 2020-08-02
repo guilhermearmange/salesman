@@ -1,15 +1,19 @@
 package com.salesman.converter;
 
+import org.junit.Before;
+import org.junit.Test;
+import org.mockito.Mockito;
+
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertNull;
 import static org.junit.Assert.assertThat;
 
-import org.junit.Before;
-import org.junit.Test;
-
 public class ConverterFactoryTest {
 
 	private ConverterFactory converterFactory;
+	private SalesmanConverter salesmanConverter;
+	private CustomerConverter customerConverter;
+	private SaleConverter saleConverter;
 	
 	private static final String SALESMAN_TYPE = "001";
 	private static final String CUSTOMER_TYPE = "002";
@@ -18,7 +22,10 @@ public class ConverterFactoryTest {
 
 	@Before
 	public void setUp() {
-		converterFactory = new ConverterFactory();
+		salesmanConverter = Mockito.mock(SalesmanConverter.class);
+		customerConverter = Mockito.mock(CustomerConverter.class);
+		saleConverter = Mockito.mock(SaleConverter.class);
+		converterFactory = new ConverterFactory(salesmanConverter, customerConverter, saleConverter);
 	}
 	
 	@Test

@@ -1,7 +1,9 @@
 package com.salesman.converter;
 
 import com.salesman.model.Salesman;
+import org.springframework.stereotype.Component;
 
+@Component
 public class SalesmanConverter implements RawDataConverter<Salesman> {
 
 	private static final int CPF_POSITION = 1;

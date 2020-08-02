@@ -1,7 +1,9 @@
 package com.salesman.converter;
 
 import com.salesman.model.Customer;
+import org.springframework.stereotype.Component;
 
+@Component
 public class CustomerConverter implements RawDataConverter<Customer> {
 
 	private static final int CNPJ_POSITION = 1;

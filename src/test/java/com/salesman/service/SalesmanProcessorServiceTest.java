@@ -1,20 +1,20 @@
 package com.salesman.service;
 
-import static java.util.Collections.emptyList;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Collections;
-
+import com.salesman.configuration.Properties;
+import com.salesman.model.Metric;
+import com.salesman.service.analytics.SalesmanDataAnalyticsService;
+import com.salesman.stub.MetricStub;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.salesman.configuration.Properties;
-import com.salesman.model.DataAnalytics;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import static java.util.Collections.emptyList;
+import static org.mockito.Mockito.*;
 
 public class SalesmanProcessorServiceTest {
 
@@ -48,23 +48,23 @@ public class SalesmanProcessorServiceTest {
 	@Test
 	public void mustProcessFile() {
 		Path file = Paths.get(BASE_PATH, INPUT_FILENAME);
-		DataAnalytics dataAnalytics = new DataAnalytics(AMOUNT_OF_CLIENTS, AMOUNT_OF_SALESMAN, WORST_SALESMAN, MOST_EXPENSIVE_SALE);
-		
+		List<Metric> metricList = Arrays.asList(MetricStub.createOne());
+
 		when(properties.getBasePath()).thenReturn(BASE_PATH);
 		when(properties.getFileOutputFolder()).thenReturn(OUTPUT_FOLDER);
 		when(properties.getFileOutputRegex()).thenReturn(OUTPUT_REGEX);
 		when(properties.getFileOutputReplace()).thenReturn(OUTPUT_REPLACE);
 		when(salesmanReaderService.readFile(file)).thenReturn(emptyList());
-		when(salesmanDataAnalyticsService.process(emptyList())).thenReturn(dataAnalytics);
+		when(salesmanDataAnalyticsService.process(emptyList())).thenReturn(metricList);
 
 		salesmanProcessorService.process(file);
-	
+
 		verify(properties, times(1)).getBasePath();
 		verify(properties, times(1)).getFileOutputFolder();
 		verify(properties, times(1)).getFileOutputRegex();
 		verify(properties, times(1)).getFileOutputReplace();
 		verify(salesmanReaderService, times(1)).readFile(file);
 		verify(salesmanDataAnalyticsService, times(1)).process(Collections.emptyList());
-		verify(salesmanWriterService, times(1)).write(OUTPUT_FILE_PATH, dataAnalytics);
+		verify(salesmanWriterService, times(1)).write(OUTPUT_FILE_PATH, metricList);
 	}
 }

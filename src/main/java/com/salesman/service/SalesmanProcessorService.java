@@ -1,14 +1,14 @@
 package com.salesman.service;
 
+import com.salesman.configuration.Properties;
+import com.salesman.model.Metric;
+import com.salesman.model.ModelData;
+import com.salesman.service.analytics.SalesmanDataAnalyticsService;
+import org.springframework.stereotype.Service;
+
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.List;
-
-import org.springframework.stereotype.Service;
-
-import com.salesman.configuration.Properties;
-import com.salesman.model.DataAnalytics;
-import com.salesman.model.ModelData;
 
 @Service
 public class SalesmanProcessorService {
@@ -30,7 +30,7 @@ public class SalesmanProcessorService {
 
 	public void process(Path file) {
 		List<ModelData> data = salesmanReaderService.readFile(file);
-		DataAnalytics dataAnalytics = salesmanDataAnalyticsService.process(data);
+		List<Metric> dataAnalytics = salesmanDataAnalyticsService.process(data);
 		salesmanWriterService.write(getOutputPath(file), dataAnalytics);
 	}
 

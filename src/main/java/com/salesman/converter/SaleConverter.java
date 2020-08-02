@@ -1,12 +1,14 @@
 package com.salesman.converter;
 
+import com.salesman.model.Sale;
+import com.salesman.model.SaleItem;
+import org.springframework.stereotype.Component;
+
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.salesman.model.Sale;
-import com.salesman.model.SaleItem;
-
+@Component
 public class SaleConverter  implements RawDataConverter<Sale> {
 
 	private static final int SALE_ID_POSITION = 1;
