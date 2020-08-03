@@ -16,7 +16,6 @@ import static org.junit.Assert.assertEquals;
 
 public class SalesmanDataAnalyticsServiceTest {
 
-
     private AnalyticsMetricService analyticsMetricService;
     private List<AnalyticsMetricService> analyticsMetricServices;
 	private SalesmanDataAnalyticsService salesmanDataAnalyticsService;

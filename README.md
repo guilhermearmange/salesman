@@ -35,7 +35,7 @@ Destaque do que foi utilizado para o desenvolvimento deste projeto:
 - file.input.folder: /data/in
     - Utilizado para definir a pasta da qual será lido os arquivos. Caminho relativo da user home do usuário. 
 
-- file.input.matcher: "glob:*.dat"
+- file.input.matcher: "*.dat"
     - Pattern para validar os tipos de arquivos a serem processados 
 
 - poller.rate: 1000

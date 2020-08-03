@@ -9,7 +9,7 @@ import java.util.List;
 
 @Service
 public class AmountOfSalesmanMetricService implements AnalyticsMetricService {
-    private static String METRIC_NAME = "Amount of Salesman";
+    private final static String METRIC_NAME = "Amount of Salesman";
 
     @Override
     public Metric process(List<ModelData> data) {

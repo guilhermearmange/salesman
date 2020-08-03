@@ -20,7 +20,7 @@ public class SalesmanMetricServiceTest {
 	}
 	
 	@Test
-	public void mustWriteFile() {
+	public void metricsToRawText() {
 		List<Metric> metrics = Arrays.asList(MetricStub.createOne());
 		String rawText = salesmanMetricService.metricsToRawText(metrics);
 		assertEquals("Test name: Test value", rawText);
