@@ -19,6 +19,7 @@ import org.springframework.integration.file.dsl.Files;
 import org.springframework.integration.file.filters.SimplePatternFileListFilter;
 import org.springframework.integration.file.support.FileExistsMode;
 import org.springframework.integration.handler.GenericHandler;
+import org.springframework.integration.handler.LoggingHandler;
 import org.springframework.integration.scheduling.PollerMetadata;
 import org.springframework.integration.transformer.GenericTransformer;
 
@@ -46,12 +47,14 @@ public class IntegrationFlowConfig {
 		return IntegrationFlows
 				.from(fileReadingMessageSource(), spec -> spec.poller(pollerMetada()))
 				.filter(filter())
+				.log(LoggingHandler.Level.INFO, "Processing file")
 				.transform(Files.toStringTransformer())
 				.split(splitter -> splitter.delimiters(System.lineSeparator()))
 				.transform(readLine())
 				.aggregate()
                 .handle(generateMetricHandler())
 				.handle(metricsToRawTextHandler())
+				.log(LoggingHandler.Level.INFO, "Metrics processed")
 				.handle(fileWritingMessageHandler())
 				.get();
 	}
